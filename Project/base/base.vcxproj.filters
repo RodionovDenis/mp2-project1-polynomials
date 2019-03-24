@@ -31,4 +31,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TableHash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableLinear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
