@@ -24,7 +24,7 @@ TEST(TOrderedArray, search_is_true)
 }
 TEST(TOrderedArray, insert_is_true)
 {
-	ListTable t;
+	TableOrdered t;
 	t.Add(123, "123");
 	EXPECT_FALSE(t.IsEmpty());
 }

@@ -36,12 +36,18 @@
     <ClInclude Include="TableOrdered.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TableTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TableHash2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TableOrdered.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
