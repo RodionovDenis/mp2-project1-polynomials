@@ -6,21 +6,21 @@
 
 //линейная таблица на массиве
 
-TEST(Table1, search_is_true )
+TEST(TableLinear, search_is_true )
 {
-	Table1 t;
+	TableLinear t;
 	t.Add("123", 123);
 	EXPECT_EQ(t.Find(123).key, 123);
 }
-TEST(Table1, insert_is_true)
+TEST(TableLinear, insert_is_true)
 {
-	Table1 t;
+	TableLinear t;
 	t.Add("123", 123);
 	EXPECT_FALSE(t.IsEmpty());
 }
 TEST(TLinearArray, delete_is_true)
 {
-	Table1 t;
+	TableLinear t;
 	t.Add("123", 123);
 	t.Remove(123);
 	EXPECT_TRUE(t.IsEmpty());
@@ -89,12 +89,13 @@ TEST(HashTable, insert_is_true)
 {
 	HashTable t;
 	t.Add("123", "123");
+	t.Add("123", "1234");
 	EXPECT_FALSE(t.IsEmpty());
 }
 TEST(HashTable, delete_is_true)
 {
 	HashTable t;
 	t.Add("123", "123");
-	t.Remove("321");
+	t.Remove("123");
 	EXPECT_FALSE(t.IsEmpty());
 }
