@@ -24,7 +24,9 @@ TEST(TOrderedArray, search_is_true)
 }
 TEST(TOrderedArray, insert_is_true)
 {
-
+	ListTable t;
+	t.Add(123, "123");
+	EXPECT_FALSE(t.IsEmpty());
 }
 TEST(TOrderedArray, delete_is_true)
 {
@@ -60,6 +62,21 @@ TEST(TSearchTree, delete_is_true)
 }
 
 //хэш-таблица
+
+TEST(THashTable, search_is_true)
+{
+
+}
+TEST(THashTable, insert_is_true)
+{
+
+}
+TEST(THashTable, delete_is_true)
+{
+
+}
+
+//хэш-таблица 2
 
 TEST(THashTable, search_is_true)
 {
