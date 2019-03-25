@@ -37,32 +37,34 @@ public:
 		return 0;
 	}
 	void Add(int _key, string _data)
-	{
-		size++;                                    
-		Node  *temp = new Node;                    
-		temp->Next = head;                         
+	{                                 
+		Node  *temp = new Node;                                       
 		temp->key = _key;                               
 		temp->data = _data;
 		if (!IsEmpty())                       
 		{
 			end->Next = temp;                    
-			end = temp;                          
+			end = temp; 
+			size++;
+			return;
 		}
 		else 
-			head = end = temp;                
+			head = end = temp;  
+		size++;
+		return;
 	}
 	void Delete(int _key)
 	{
 		Node* tmp1;
 		if (IsEmpty())
 		{
-			cout << "Element not found" << endl;
 			return;
 		}
-		if (head == head->Next)
+		if (head == end)
 		{
 			delete head;
-			head = NULL;
+			size--;
+			return;
 		}
 		for (Node *tmp = head; tmp = end; tmp = tmp->Next)
 			if (tmp->Next->key == _key)
@@ -78,13 +80,11 @@ public:
 	{
 		if (IsEmpty())
 		{
-			cout << "Element not found" << endl;
 			return NULL;
 		}
 		for (Node *tmp = head; tmp = end; tmp = tmp->Next)
 			if (tmp->key == _key)
 				return tmp;
-		cout << "Element not found" << endl;
 		return NULL;
 	}
 };

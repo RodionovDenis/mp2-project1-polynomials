@@ -1,3 +1,4 @@
+/*
 #include "list.h"
 #include <gtest.h>
 
@@ -25,4 +26,4 @@ TEST(TList, add_lists_is_true)
 {
 
 }
-
+*/

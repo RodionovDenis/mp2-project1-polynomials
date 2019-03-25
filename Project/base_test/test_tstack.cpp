@@ -1,3 +1,4 @@
+/*
 #include "stack.h"
 #include <gtest.h>
 
@@ -54,3 +55,4 @@ TEST(TStack,can_know_length_now)
 {
 
 }
+*/

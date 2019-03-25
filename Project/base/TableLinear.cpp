@@ -54,14 +54,15 @@ public:
 				{
 					table[i].data = "empty";
 					table[i].key = -1;
+					last--;
 				}
 				table[i].data = table[last].data;
 				table[i].key = table[last].key;
 				table[last].data = "empty";
 				table[last].key = -1;
+				last--;
 			}
 		}
-		last--;
 	}
 	Element Find(int _key)
 	{

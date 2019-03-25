@@ -3,16 +3,16 @@
 
 using namespace std;
 
-struct Node
+struct Node1
 {
 	string key;
 	string data;
-	Node* Next;
+	Node1* Next;
 };
 
 class HashTable
 {
-	Node *table[100];
+	Node1 *table[100];
 	int size = 0;
 	
 	int hash(string _key)
@@ -61,8 +61,8 @@ public:
 	// Вставляет элемент в таблицу
 	void Add(string _data, string _key)
 	{
+		Node1 *tmp = new Node1;
 		int hashNumber = hash(_key);
-		Node *tmp;
 		tmp->data = _data;
 		tmp->key = _key;
 		if (IsFull())
@@ -83,12 +83,10 @@ public:
 	void Remove(string _key)
 	{
 		int hashNumber = hash(_key);
-		Node *result = table[hashNumber];
 		if (IsEmpty())
 			return;
 		if (table[hashNumber] == NULL)
 		{
-			cout << "Element not found" << endl;
 			return;
 		}
 		if (table[hashNumber]->key == _key && table[hashNumber]->Next == NULL)
@@ -102,36 +100,33 @@ public:
 			table[hashNumber] = table[hashNumber]->Next;
 			return;
 		}
-		while (result->Next->key != _key)
+		while (table[hashNumber]->Next->key != _key)
 		{
-			if (result->Next == NULL)
+			if (table[hashNumber]->Next == NULL)
 			{
-				cout << "Element not found" << endl;
 				return;
 			}
-			result = result->Next;
+			table[hashNumber] = table[hashNumber]->Next;
 		}
-		Node* tmp = result->Next->Next;
-		delete result->Next;
-		result->Next = tmp;
+		Node1* tmp = table[hashNumber]->Next->Next;
+		delete table[hashNumber]->Next;
+		table[hashNumber]->Next = tmp;
 		return;
 	}
 
 	// Получает элемент из таблицы по его ключу.
-	Node* Find(string _key)
+	Node1* Find(string _key)
 	{
 		int hashNumber = hash(_key);
-		Node *result = table[hashNumber];
+		Node1 *result = table[hashNumber];
 		if (result == NULL)
 		{
-			cout << "Element not found" << endl;
 			return NULL;
 		}
 		while (result->key != _key)
 		{
 			if (result->Next == NULL)
 			{
-				cout << "Element not found" << endl;
 				return NULL;
 			}
 			result = result->Next;
