@@ -7,7 +7,7 @@ struct Node1
 {
 	string key;
 	string data;
-	Node1* Next;
+	Node1* Next = NULL;
 };
 struct Element
 {
@@ -39,8 +39,8 @@ class HashTable
 public:
 	HashTable()
 	{
-		for (int i = 0; i < 100; i++)
-		{
+		for (int i = 99; i >= 0; i--)
+		{ 
 			table[i] = NULL;
 		}
 	}

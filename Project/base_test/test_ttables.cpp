@@ -78,7 +78,10 @@ TEST(TSearchTree, delete_is_true)
 }
 */
 //хэш-таблица
-
+TEST(HashTable, create_is_true)
+{
+	ASSERT_NO_THROW(HashTable t);
+}
 TEST(HashTable, search_is_true)
 {
 	HashTable t;
@@ -89,7 +92,6 @@ TEST(HashTable, insert_is_true)
 {
 	HashTable t;
 	t.Add("123", "123");
-	t.Add("123", "1234");
 	EXPECT_FALSE(t.IsEmpty());
 }
 TEST(HashTable, delete_is_true)
@@ -97,5 +99,5 @@ TEST(HashTable, delete_is_true)
 	HashTable t;
 	t.Add("123", "123");
 	t.Remove("123");
-	EXPECT_FALSE(t.IsEmpty());
+	EXPECT_TRUE(t.IsEmpty());
 }

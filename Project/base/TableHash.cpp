@@ -29,6 +29,7 @@ void HashTable::Add(string _data, string _key)
 	int hashNumber = hash(_key);
 	tmp->data = _data;
 	tmp->key = _key;
+	tmp->Next = NULL;
 	if (IsFull())
 		return;
 	if (table[hashNumber] == NULL)
@@ -52,15 +53,10 @@ void HashTable::Remove(string _key)
 	{
 		return;
 	}
-	if (table[hashNumber]->key == _key && table[hashNumber]->Next == NULL)
-	{
-		table[hashNumber] = NULL;
-		size--;
-		return;
-	}
-	if (table[hashNumber]->key == _key && table[hashNumber]->Next != NULL)
+	if (table[hashNumber]->key == _key)
 	{
 		table[hashNumber] = table[hashNumber]->Next;
+		size--;
 		return;
 	}
 	while (table[hashNumber]->Next->key != _key)
