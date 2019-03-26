@@ -8,10 +8,22 @@ struct Monom
 {
 	double coeff; //коэффициент
 	int deg; //свернутая степень
-	Monom(double _coeff, int _deg): coeff(_coeff), deg(_deg) {} // конструктор 
+	Monom(double _coeff = 0.0, int _deg = 0): coeff(_coeff), deg(_deg) {} // конструктор 
 	bool operator>= (const Monom & _monom) //перегрузка сравнения для монома
 	{
 		if (deg >= _monom.deg)
+			return true;
+		return false;
+	}
+	bool operator= (const Monom & _monom) //перегрузка сравнения для монома
+	{
+		if (deg = _monom.deg)
+			return true;
+		return false;
+	}
+	bool operator> (const Monom & _monom) //перегрузка сравнения для монома
+	{
+		if (deg > _monom.deg)
 			return true;
 		return false;
 	}
@@ -38,6 +50,7 @@ public:
 			str += form[i];
 		}
 	}
+	 
 	Polynom(List<Monom> _monoms): monoms(_monoms), name("-") {} // конструктор2
 	{
 		string degs;
@@ -48,10 +61,52 @@ public:
 			form += 'x' += degs[0] += 'y' += degs[1] += 'z' += degs[2];
 		}
 	}
-	/*Polynom operator+(const Polynom & polynom)
+	Polynom operator+(const Polynom & polynom)
 	{
-
-	}*/
+		List<Monom> l;
+		int i = 0, j = 0;
+		while (i < monoms.Size() && j < polynom.monoms.Size())
+		{
+			if (monoms[i] == polynom.monoms[j])
+			{
+				Monom m(monoms[i].coeff + polynom.monoms[j].coeff, monoms[i].deg);
+				l.Insert(m);
+				i++, j++;
+			}
+			else if (monoms[i] > polynom.monoms[j])
+			{
+				Monom m(monoms[i].coeff, monoms[i].deg);
+				l.Insert(m);
+				i++;
+			}
+			else
+			{
+				Monom m(polynom.monoms[j].coeff, polynom.monoms[j].deg);
+				l.Insert(m);
+				j++;
+			}
+		}
+		Polynom p(l);
+		return p;
+	}
+	Polynom operator*(double c)
+	{
+		List<Monom> l;
+		int i = 0;
+		while (i < monoms.Size())
+		{
+			Monom m = monoms[i];
+			m.coeff *= c;
+			l.Insert(m);
+		}
+		Polynom p(l);
+		return p;
+	}
+	Polynom operator-(Polynom & polynom)
+	{
+		Polynom p = polynom * -1;
+		return *this + p;
+	}
 };
 
 bool IsVariable(char character) // переменная или нет?

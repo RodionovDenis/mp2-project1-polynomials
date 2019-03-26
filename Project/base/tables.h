@@ -1,8 +1,11 @@
 #ifndef __TABLES_H__
 #define __TABLES_H__
+
 #include <iostream>
 #include <string>
+
 using namespace std;
+
 struct Node1
 {
 	string key;
