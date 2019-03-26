@@ -32,7 +32,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="sample_polynomials.cpp">
+=======
+    <ClCompile Include="TableHash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableLinear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableList.cpp">
+>>>>>>> 73a4ba924101c27c2804aff4f7b00f81ee993631
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
