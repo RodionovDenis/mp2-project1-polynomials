@@ -6,10 +6,10 @@
 
 struct Monom
 {
-	double coeff; //коэффициент
-	int deg; //свернутая степень
-	Monom(double _coeff, int _deg): coeff(_coeff), deg(_deg) {} // конструктор 
-	bool operator>= (const Monom & _monom) //перегрузка сравнения для монома
+	double coeff; //РєРѕСЌС„С„РёС†РёРµРЅС‚
+	int deg; //СЃРІРµСЂРЅСѓС‚Р°СЏ СЃС‚РµРїРµРЅСЊ
+	Monom(double _coeff, int _deg): coeff(_coeff), deg(_deg) {} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ 
+	bool operator>= (const Monom & _monom) //РїРµСЂРµРіСЂСѓР·РєР° СЃСЂР°РІРЅРµРЅРёСЏ РґР»СЏ РјРѕРЅРѕРјР°
 	{
 		if (deg >= _monom.deg)
 			return true;
@@ -19,11 +19,11 @@ struct Monom
 
 class Polynom
 {
-	List<Monom> monoms; //упорядоченный по степеням список мономов
-	string form; //строка - представление многочлена в алгебраическом виде 
-	string name; //имя полинома
+	List<Monom> monoms; //СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹Р№ РїРѕ СЃС‚РµРїРµРЅСЏРј СЃРїРёСЃРѕРє РјРѕРЅРѕРјРѕРІ
+	string form; //СЃС‚СЂРѕРєР° - РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР° РІ Р°Р»РіРµР±СЂР°РёС‡РµСЃРєРѕРј РІРёРґРµ 
+	string name; //РёРјСЏ РїРѕР»РёРЅРѕРјР°
 public:
-	Polynom(string _form, string _name) :monoms(), form(_form), name(_name) //конструктор1
+	Polynom(string _form, string _name) :monoms(), form(_form), name(_name) //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ1
 	{
 		string str;
 		for (int i = 0; i < form.size(); i++)
@@ -38,7 +38,7 @@ public:
 			str += form[i];
 		}
 	}
-	Polynom(List<Monom> _monoms): monoms(_monoms), name("-") {} // конструктор2
+	Polynom(List<Monom> _monoms): monoms(_monoms), name("-") {} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ2
 	{
 		string degs;
 		for (int i = 0; i < monoms.Size(); i++)
@@ -54,39 +54,39 @@ public:
 	}*/
 };
 
-bool IsVariable(char character) // переменная или нет?
+bool IsVariable(char character) // РїРµСЂРµРјРµРЅРЅР°СЏ РёР»Рё РЅРµС‚?
 {
 	if (character == 'x' || character == 'y' || character == 'z')
 		return true;
 	else return false;
 }
-bool IsOperation(char ch) //операция?
+bool IsOperation(char ch) //РѕРїРµСЂР°С†РёСЏ?
 {
 	if (ch == '+' || ch == '-')
 		return true;
 	return false;
 }
-bool IsNumber(char character) // проверка на степень
+bool IsNumber(char character) // РїСЂРѕРІРµСЂРєР° РЅР° СЃС‚РµРїРµРЅСЊ
 {
 	for (char i = '0'; i <= '9'; i++)
 		if (character == i)
 			return true;
 	return false;
 }
-bool IsValidCharacter(char ch) //проверка символа на допустимое значение
+bool IsValidCharacter(char ch) //РїСЂРѕРІРµСЂРєР° СЃРёРјРІРѕР»Р° РЅР° РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ
 {
 	if (IsVariable(ch) || IsOperation(ch) || IsNumber(ch))
 		return true;
 	return false;
 }
-bool IsPolynomCorrect(string polynom) //проверка строки с полиномом на корректность
+bool IsPolynomCorrect(string polynom) //РїСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё СЃ РїРѕР»РёРЅРѕРјРѕРј РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ
 {
 	for (int i = 0; i < polynom.size(); i++)
 		if (!IsValidCharacter(polynom[i]))
 			return false;
 	return true;
 }
-double ReturnCoeff(string monom) //вернуть коэффициент из монома
+double ReturnCoeff(string monom) //РІРµСЂРЅСѓС‚СЊ РєРѕСЌС„С„РёС†РёРµРЅС‚ РёР· РјРѕРЅРѕРјР°
 {
 	string flag;
 	for (int i = 0; i < monom.size(); i++)
@@ -95,7 +95,7 @@ double ReturnCoeff(string monom) //вернуть коэффициент из монома
 		else break;
 	return stod(flag);
 }
-int ReturnDeg(string monom) //вернуть свернутую степень у монома
+int ReturnDeg(string monom) //РІРµСЂРЅСѓС‚СЊ СЃРІРµСЂРЅСѓС‚СѓСЋ СЃС‚РµРїРµРЅСЊ Сѓ РјРѕРЅРѕРјР°
 {
 	string flag;
 	for (int i = 0; i < monom.size(); i++)

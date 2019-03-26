@@ -22,7 +22,7 @@ bool HashTable::IsFull()
 		return 0;
 	}
 
-	// Вставляет элемент в таблицу
+	// Р’СЃС‚Р°РІР»СЏРµС‚ СЌР»РµРјРµРЅС‚ РІ С‚Р°Р±Р»РёС†Сѓ
 void HashTable::Add(string _data, string _key)
 {
 	Node1 *tmp = new Node1;
@@ -43,7 +43,7 @@ void HashTable::Add(string _data, string _key)
 	table[hashNumber]->Next = tmp;
 	return;
 }
-	//Убирает элемент из таблицы 
+	//РЈР±РёСЂР°РµС‚ СЌР»РµРјРµРЅС‚ РёР· С‚Р°Р±Р»РёС†С‹ 
 void HashTable::Remove(string _key)
 {
 	int hashNumber = hash(_key);
@@ -73,7 +73,7 @@ void HashTable::Remove(string _key)
 	return;
 }
 
-// Получает элемент из таблицы по его ключу.
+// РџРѕР»СѓС‡Р°РµС‚ СЌР»РµРјРµРЅС‚ РёР· С‚Р°Р±Р»РёС†С‹ РїРѕ РµРіРѕ РєР»СЋС‡Сѓ.
 Node1* HashTable::Find(string _key)
 {
 	int hashNumber = hash(_key);

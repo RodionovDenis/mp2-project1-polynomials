@@ -4,7 +4,7 @@
 #include "TableList.cpp"
 #include "TableHash.cpp"
 
-//линейная таблица на массиве
+//Р»РёРЅРµР№РЅР°СЏ С‚Р°Р±Р»РёС†Р° РЅР° РјР°СЃСЃРёРІРµ
 
 TEST(TableLinear, search_is_true )
 {
@@ -26,7 +26,7 @@ TEST(TLinearArray, delete_is_true)
 	EXPECT_TRUE(t.IsEmpty());
 }
 /*
-//упорядоченная таблица на массиве
+//СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅР°СЏ С‚Р°Р±Р»РёС†Р° РЅР° РјР°СЃСЃРёРІРµ
 
 TEST(TOrderedArray, search_is_true)
 {
@@ -41,7 +41,7 @@ TEST(TOrderedArray, delete_is_true)
 
 }
 */
-//линейная таблица на списке
+//Р»РёРЅРµР№РЅР°СЏ С‚Р°Р±Р»РёС†Р° РЅР° СЃРїРёСЃРєРµ
 TEST(ListTable, search_is_true)
 {
 	ListTable t;
@@ -62,7 +62,7 @@ TEST(ListTable, delete_is_true)
 	EXPECT_TRUE(t.IsEmpty());
 }
 /*
-//дерево поиска
+//РґРµСЂРµРІРѕ РїРѕРёСЃРєР°
 
 TEST(TSearchTree, search_is_true)
 {
@@ -77,7 +77,7 @@ TEST(TSearchTree, delete_is_true)
 
 }
 */
-//хэш-таблица
+//С…СЌС€-С‚Р°Р±Р»РёС†Р°
 TEST(HashTable, create_is_true)
 {
 	ASSERT_NO_THROW(HashTable t);

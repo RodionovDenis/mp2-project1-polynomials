@@ -6,11 +6,11 @@
 using namespace std;
 
 template <class T>
-struct Node //структура звена
+struct Node //СЃС‚СЂСѓРєС‚СѓСЂР° Р·РІРµРЅР°
 {
-	T data; //данные
-	Node<T> * pNext; //указатель на следующее звено
-	Node() : data(), pNext(nullptr) {} //коструктор по умолчанию
+	T data; //РґР°РЅРЅС‹Рµ
+	Node<T> * pNext; //СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РµРµ Р·РІРµРЅРѕ
+	Node() : data(), pNext(nullptr) {} //РєРѕСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 };
 
 template <class T>
@@ -18,8 +18,8 @@ class List
 {
 	Node<T> * pFirst;
 public:
-	List() : pFirst(nullptr) {} //конструктор
-	~List() //деструктор
+	List() : pFirst(nullptr) {} //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	~List() //РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		Node<T> * p = pFirst;
 		while (p != nullptr)
@@ -28,8 +28,8 @@ public:
 			delete p;
 			p = pFirst;
 		}
-	} //деструктор
-	List(const List<T> & list) //конструктор копирования
+	} //РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+	List(const List<T> & list) //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	{
 		if (list.pFirst != nullptr)
 			pFirst = nullptr;
@@ -48,7 +48,7 @@ public:
 			p1->pNext = nullptr;
 		}
 	}
-	List<T> & operator=(const List<T> & list) //оператор присваивания
+	List<T> & operator=(const List<T> & list) //РѕРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
 	{
 		if (list.pFirst != nullptr)
 		{
@@ -77,7 +77,7 @@ public:
 		p1->data = p2->data;
 		return this;
 	}
-	int Size() //получить размер
+	int Size() //РїРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ
 	{
 		int size = 0;
 		Node<T> * ptr = pFirst;
@@ -88,7 +88,7 @@ public:
 		}
 		return size;
 	}
-	T operator[](int i) //перегрузка скобок
+	T operator[](int i) //РїРµСЂРµРіСЂСѓР·РєР° СЃРєРѕР±РѕРє
 	{
 		if (i >= size)
 			throw "data is not correct";
@@ -98,7 +98,7 @@ public:
 			ptr = ptr->pNext;
 		return ptr->data;
 	}
-	void Insert(T _data) //вставить
+	void Insert(T _data) //РІСЃС‚Р°РІРёС‚СЊ
 	{
 		if (pFirst == nullptr)
 		{
