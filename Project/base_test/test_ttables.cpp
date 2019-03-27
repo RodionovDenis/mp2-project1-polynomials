@@ -97,7 +97,7 @@ TEST(HashTable, insert_is_true)
 TEST(HashTable, delete_is_true)
 {
 	HashTable t;
-	t.Add("123", "123");
-	t.Remove("123");
+	t.Add("123", "1234");
+	t.Remove("1234");
 	EXPECT_TRUE(t.IsEmpty());
 }
