@@ -1,3 +1,4 @@
+/*
 #include "polynomials.h"
 #include <gtest.h>
 
@@ -33,4 +34,4 @@ TEST(TPolynomial, calculation_polynomial_is_true)
 {
 
 }
-
+*/

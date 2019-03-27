@@ -86,6 +86,11 @@
     <ClInclude Include="stack.h" />
     <ClInclude Include="tables.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TableHash.cpp" />
+    <ClCompile Include="TableLinear.cpp" />
+    <ClCompile Include="TableList.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
