@@ -1,3 +1,4 @@
+/*
 #include "tables.h"
 #include <gtest.h>
 #include "TableLinear.cpp"
@@ -12,6 +13,17 @@ TEST(TableLinear, search_is_true )
 	t.Add("123", 123);
 	EXPECT_EQ(t.Find(123).key, 123);
 }
+TEST(TableLinear, cant_search_wrong)
+{
+	TableLinear t;
+	t.Add("123", 123);
+	ASSERT_ANY_THROW(t.Find(5));
+}
+TEST(TableLinear, cant_search_empty)
+{
+	TableLinear t;
+	ASSERT_ANY_THROW(t.Find(5));
+}
 TEST(TableLinear, insert_is_true)
 {
 	TableLinear t;
@@ -25,7 +37,7 @@ TEST(TLinearArray, delete_is_true)
 	t.Remove(123);
 	EXPECT_TRUE(t.IsEmpty());
 }
-/*
+
 //упорядоченная таблица на массиве
 
 TEST(TOrderedArray, search_is_true)
@@ -40,7 +52,7 @@ TEST(TOrderedArray, delete_is_true)
 {
 
 }
-*/
+
 //линейная таблица на списке
 TEST(ListTable, search_is_true)
 {
@@ -76,7 +88,7 @@ TEST(TSearchTree, delete_is_true)
 {
 
 }
-*/
+
 //хэш-таблица
 TEST(HashTable, create_is_true)
 {
@@ -101,3 +113,4 @@ TEST(HashTable, delete_is_true)
 	t.Remove("1234");
 	EXPECT_TRUE(t.IsEmpty());
 }
+*/

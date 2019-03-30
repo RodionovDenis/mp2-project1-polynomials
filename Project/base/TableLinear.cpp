@@ -17,7 +17,7 @@ bool TableLinear::IsEmpty()
 		return 1;
 	return 0;
 }
-void TableLinear::Add(string _data, int _key)
+void TableLinear::Add(Polynom _data, string _key)
 {
 	if (IsFull())
 		return;
@@ -25,7 +25,7 @@ void TableLinear::Add(string _data, int _key)
 	table[last].key = _key;
 	last++;
 }
-void TableLinear::Remove(int _key)
+void TableLinear::Remove(string _key)
 {
 	if (IsEmpty())
 		return;
@@ -36,23 +36,23 @@ void TableLinear::Remove(int _key)
 			if (i == last)
 			{
 				table[i].data = "empty";
-				table[i].key = -1;
+				table[i].key = "-1";
 				last--;
 			}
 			table[i].data = table[last].data;
 			table[i].key = table[last].key;
 			table[last].data = "empty";
-			table[last].key = -1;
+			table[last].key = "-1";
 			last--;
 		}
 	}
 }
-Element TableLinear::Find(int _key)
+Element TableLinear::Find(string _key)
 {
 	if (IsEmpty())
-		throw;
+		throw "Error";
 	for (int i = 0; i <= last; i++)
 		if (table[i].key == _key)
 			return table[i];
-	throw;
+	throw "Error";
 }

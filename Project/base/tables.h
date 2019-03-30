@@ -6,18 +6,18 @@ using namespace std;
 struct Node1
 {
 	string key;
-	string data;
+	Polynom data;
 	Node1* Next = NULL;
 };
 struct Element
 {
-	string data;
-	int key;
+	Polynom data;
+	string key;
 };
 struct  Node
 {
-	string data;
-	int key;
+	Polynom data;
+	string key;
 	Node *Next = NULL;
 };
 class HashTable
@@ -53,7 +53,7 @@ public:
 	int Count();
 	bool IsEmpty();
 	bool IsFull();
-	void Add(string _data, string _key);
+	void Add(Polynom _data, string _key);
 	void Remove(string _key);
 	Node1* Find(string _key);
 };
@@ -67,14 +67,14 @@ public:
 		for (int i = 0; i < 1000; i++)
 		{
 			table[i].data = "empty";
-			table[i].key = -1;
+			table[i].key = "-1";
 		}
 	}
 	bool IsFull();
 	bool IsEmpty();
-	void Add(string _data, int _key);
-	void Remove(int _key);
-	Element Find(int _key);
+	void Add(string _data, string _key);
+	void Remove(string _key);
+	Element Find(string _key);
 };
 class ListTable
 {
@@ -94,8 +94,8 @@ public:
 	}
 	int Count();
 	bool IsEmpty();
-	void Add(int _key, string _data);
-	void Delete(int _key);
-	Node* Find(int _key);
+	void Add(string _key, Polynom _data);
+	void Delete(string _key);
+	Node* Find(string _key);
 };
 #endif

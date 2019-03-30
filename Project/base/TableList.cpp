@@ -12,7 +12,7 @@ bool ListTable::IsEmpty()
 		return 1;
 	return 0;
 }
-void ListTable::Add(int _key, string _data)
+void ListTable::Add(string _key, Polynom _data)
 {                                 
 	Node  *temp = new Node;                                       
 	temp->key = _key;                               
@@ -29,7 +29,7 @@ void ListTable::Add(int _key, string _data)
 	size++;
 	return;
 }
-void ListTable::Delete(int _key)
+void ListTable::Delete(string _key)
 {
 	Node *tmp;
 	if (IsEmpty())
@@ -61,7 +61,7 @@ void ListTable::Delete(int _key)
 		}
 	
 }
-Node* ListTable::Find(int _key)
+Node* ListTable::Find(string _key)
 {
 	if (IsEmpty())
 	{

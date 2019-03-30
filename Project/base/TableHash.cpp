@@ -23,7 +23,7 @@ bool HashTable::IsFull()
 	}
 
 	// Вставляет элемент в таблицу
-void HashTable::Add(string _data, string _key)
+void HashTable::Add(Polynom _data, string _key)
 {
 	Node1 *tmp = new Node1;
 	int hashNumber = hash(_key);
