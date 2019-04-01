@@ -87,9 +87,12 @@
     <ClInclude Include="tables.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SearchTree.cpp" />
     <ClCompile Include="TableHash.cpp" />
+    <ClCompile Include="TableHash2.cpp" />
     <ClCompile Include="TableLinear.cpp" />
     <ClCompile Include="TableList.cpp" />
+    <ClCompile Include="TableOrdered.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

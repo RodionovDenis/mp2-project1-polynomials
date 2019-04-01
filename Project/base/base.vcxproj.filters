@@ -41,5 +41,14 @@
     <ClCompile Include="TableList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TableHash2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableOrdered.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -98,4 +98,26 @@ public:
 	void Delete(string _key);
 	Node* Find(string _key);
 };
+class TableOrdered
+{
+	int a;
+	int b;
+	int c;
+	Element table[1000];
+	int last = 0;
+public:
+	TableOrdered()
+	{
+		for (int i = 0; i < 1000; i++)
+		{
+			table[i].data = "empty";
+			table[i].key = "-1";
+		}
+	}
+	bool IsFull();
+	bool IsEmpty();
+	void Add(string _data, string _key);
+	void Remove(string _key);
+	Element Find(string _key);
+};
 #endif
