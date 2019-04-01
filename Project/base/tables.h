@@ -188,7 +188,7 @@ public:
 class SearchTree
 {
 	NodeTree *root;
-	int nodeCount; 
+	int NodeCount; 
 	NodeTree *FindMinChild(NodeTree *_NodeTree) {}; //найти наименьшего потомка
 	void DeleteNode(NodeTree *_NodeTree) {};
 	void Clear(NodeTree *_NodeTree)
@@ -205,7 +205,7 @@ public:
 	SearchTree()
 	{
 		root = new NodeTree(0, nullptr);
-		nodeCount = 0;
+		NodeCount = 0;
 	}
 	~SearchTree()
 	{

@@ -61,19 +61,75 @@ void SearchTree::DeleteNode(NodeTree *_NodeTree)
 	NodeTree *Cur = _NodeTree->parent;
 	delete _NodeTree;
 };
-void AddNode(int _key)
+void SearchTree::AddNode(int _key)
 {
+	if (!NodeCount)
+	{
+		root->key = _key;
+		NodeCount++;
+		return;
+	}
 
+	NodeTree *Cur = root;
+	while (true) 
+	{
+		if (_key < Cur->key) 
+		{
+			if (Cur->left) 
+				Cur = Cur->left;
+			else 
+			{
+				Cur->left = new NodeTree(_key, Cur);
+				break;
+			}
+		}
+		else 
+		{
+			if (Cur->right) 
+			{
+				Cur = Cur->right;
+			}
+			else 
+			{
+				Cur->right = new NodeTree(_key, Cur);
+				break;
+			}
+		}
+	}
+	NodeCount++;
 }
-NodeTree Find(int _key)
+NodeTree SearchTree::Find(int _key)
 {
-
+		NodeTree *Cur = root;
+		while (Cur && Cur->key != _key) 
+			if (_key < Cur->key) 
+				Cur = Cur->left;
+			else 
+				Cur = Cur->right;
+		return Cur;
 }
-void Remove(int _key)
+void SearchTree::Remove(int _key)
 {
-
+	NodeTree *Rem = Find(_key);
+	if (NodeCount && Rem) 
+	{
+		if (!Rem->left || !Rem->right)
+			DeleteNode(Rem);
+		else 
+		{  
+			NodeTree *Heir= FindMinChild(Rem->right);
+			Rem->key = Heir->key;
+			DeleteNode(Heir);
+		}
+		NodeCount--;
+	}
 }
-void ClearTree()
+void SearchTree::ClearTree()
 {
-
+	Clear(root->left);
+	Clear(root->right);
+	NodeCount = 0;
+	root->left = nullptr;
+	root->right = nullptr;
+	root->height = 1;
 }
