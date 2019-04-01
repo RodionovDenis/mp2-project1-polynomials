@@ -11,13 +11,13 @@ bool TableOrdered::IsFull()
 		return 1;
 	return 0;
 }
-bool TableLinear::IsEmpty()
+bool TableOrdered::IsEmpty()
 {
 	if (last == 0)
 		return 1;
 	return 0;
 }
-void TableOrdered::Add(Polynom _data, string _key)
+void TableOrdered::Add(string _data, string _key)
 {
 	if (IsFull())
 		return;

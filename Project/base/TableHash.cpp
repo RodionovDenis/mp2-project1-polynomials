@@ -1,4 +1,4 @@
-#include <string>
+/*#include <string>
 #include "tables.h"
 
 using namespace std;
@@ -92,3 +92,4 @@ Node1* HashTable::Find(string _key)
 	}
 	return result;
 }
+*/

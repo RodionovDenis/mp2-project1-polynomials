@@ -1,4 +1,4 @@
-#include "tables.h"
+/*#include "tables.h"
 
 using namespace std;
 
@@ -56,3 +56,4 @@ Element TableLinear::Find(string _key)
 			return table[i];
 	throw "Error";
 }
+*/

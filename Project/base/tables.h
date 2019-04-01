@@ -20,7 +20,37 @@ struct  Node
 	string key;
 	Node *Next = NULL;
 };
-class HashTable
+struct NodeTree
+{
+	int key;
+	int height;
+	NodeTree *left;
+	NodeTree *right;
+	NodeTree *parent;
+	NodeTree(int _key, NodeTree *_parent)
+	{
+		key = _key;
+		height = 1;
+		left = nullptr;
+		right = nullptr;
+		parent = nullptr;
+	}
+	NodeTree(int, int, NodeTree*, NodeTree*, NodeTree*);
+	~NodeTree() {}
+	void CalculateHeight() //вычислить высоту дерева
+	{
+		if (left && right)
+			if (left->height > right->height)
+				height = left->height++;
+			else height = right->height++;
+		else if (left)
+			height = left->height++;
+		else if (right)
+			height = right->height++;
+		else height = 1;
+	}
+};
+/*class HashTable
 {
 	Node1 *table[100];
 	int size = 0;
@@ -56,6 +86,40 @@ public:
 	void Add(Polynom _data, string _key);
 	void Remove(string _key);
 	Node1* Find(string _key);
+};*/
+/*class HashTable2
+{
+	Element table[1000];
+	int size;
+	int hash(string _key)
+	{
+		int sum = 0;
+		for (int i = 0; i < _key.length(); i++)
+			sum += _key[i];
+		if (sum >= 0)
+			return sum % 100;
+		if (sum < 0)
+			return -1 * sum % 100;
+	}
+public:
+	HashTable2()
+	{
+		for (int i = 999; i >= 0; i--)
+		{
+			table[i] = NULL;
+		}
+	}
+
+	~HashTable2()
+	{
+		for (int i = 0; i < 1000; i++)
+			delete table[i];
+	}
+	int Count();
+	bool IsEmpty();
+	bool IsFull();
+	void Add(Polynom _data, string _key);
+	void Remove(string _key);
 };
 class TableLinear
 {
@@ -97,7 +161,7 @@ public:
 	void Add(string _key, Polynom _data);
 	void Delete(string _key);
 	Node* Find(string _key);
-};
+};*/
 class TableOrdered
 {
 	int a;
@@ -119,5 +183,41 @@ public:
 	void Add(string _data, string _key);
 	void Remove(string _key);
 	Element Find(string _key);
+};
+
+class SearchTree
+{
+	NodeTree *root;
+	int nodeCount; 
+	NodeTree *FindMinChild(NodeTree *_NodeTree) {}; //найти наименьшего потомка
+	void DeleteNode(NodeTree *_NodeTree) {};
+	void Clear(NodeTree *_NodeTree)
+	{
+		NodeTree *Cur = _NodeTree;
+		if (Cur)
+		{
+			Clear(Cur->left);
+			Clear(Cur->right);
+			delete Cur;
+		}
+	};
+public:
+	SearchTree()
+	{
+		root = new NodeTree(0, nullptr);
+		nodeCount = 0;
+	}
+	~SearchTree()
+	{
+		Clear(root);
+	}
+	void AddNode(int _key);
+	NodeTree Find(int _key);
+	void Remove(int _key);
+	void ClearTree();
+
+
+
+
 };
 #endif

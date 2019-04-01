@@ -1,5 +1,5 @@
 #include "tables.h"
-
+/*
 
 
 int ListTable::Count()
@@ -72,3 +72,4 @@ Node* ListTable::Find(string _key)
 			return tmp;
 	return NULL;
 }
+*/
