@@ -14,6 +14,12 @@ struct Element
 	Polynom data;
 	string key;
 };
+struct ElementHT
+{
+	Polynom data;
+	string key;
+	bool BL = false;
+};
 struct  Node
 {
 	Polynom data;
@@ -87,10 +93,10 @@ public:
 	void Remove(string _key);
 	Node1* Find(string _key);
 };*/
-/*class HashTable2
+class HashTable2
 {
-	Element table[1000];
-	int size;
+	ElementHT table[1000];
+	int size=0;
 	int hash(string _key)
 	{
 		int sum = 0;
@@ -115,11 +121,11 @@ public:
 		for (int i = 0; i < 1000; i++)
 			delete table[i];
 	}
-	int Count();
 	bool IsEmpty();
 	bool IsFull();
 	void Add(Polynom _data, string _key);
 	void Remove(string _key);
+	Element HT(string _key);
 };
 class TableLinear
 {
@@ -140,6 +146,7 @@ public:
 	void Remove(string _key);
 	Element Find(string _key);
 };
+/*
 class ListTable
 {
 	Node *head, *end;

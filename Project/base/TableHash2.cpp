@@ -1,4 +1,4 @@
-/*#include <string>
+#include <string>
 #include "tables.h"
 
 using namespace std;
@@ -25,8 +25,19 @@ bool HashTable2::IsFull()
 // Вставляет элемент в таблицу
 void HashTable2::Add(Polynom _data, string _key)
 {
-	
-
+	if (IsFull())
+		return;
+	int hf = hash(_key);
+	while (table[hf].BL)
+	{
+		hf++;
+	}
+	if (!table[hf].BL)
+	{
+		table[hf].data = _data;
+		table[hf].key = _key;
+		size++;
+	}
 }
 //Убирает элемент из таблицы 
 void HashTable2::Remove(string _key)
@@ -39,22 +50,15 @@ void HashTable2::Remove(string _key)
 }
 
 // Получает элемент из таблицы по его ключу.
-void HashTable2::Find(string _key)
+ElementHT HashTable2::Find(string _key)
 {
-	int hashNumber = hash(_key);
-	Node1 *result = table[hashNumber];
-	if (result == NULL)
+	int hf = hash(_key);
+	while (table[hf].key != _key)
 	{
-		return NULL;
+		hf++;
 	}
-	while (result->key != _key)
-	{
-		if (result->Next == NULL)
-		{
-			return NULL;
-		}
-		result = result->Next;
-	}
-	return result;
+	if (table[hf].key == _key)
+		return table[hf].data;
+	else
+		throw "Error";
 }
-*/
