@@ -87,9 +87,12 @@
     <ClInclude Include="tables.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HashTable1.cpp" />
+    <ClCompile Include="HashTable2.cpp" />
+    <ClCompile Include="LinearArray.cpp" />
+    <ClCompile Include="OrderedArray.cpp" />
     <ClCompile Include="sample_polynomials.cpp" />
-    <ClCompile Include="TableHash.cpp" />
-    <ClCompile Include="TableLinear.cpp" />
+    <ClCompile Include="SearchTree.cpp" />
     <ClCompile Include="TableList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

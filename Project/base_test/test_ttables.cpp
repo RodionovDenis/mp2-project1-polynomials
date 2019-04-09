@@ -1,103 +1,179 @@
-#include "tables.h"
 #include <gtest.h>
-#include "TableLinear.cpp"
+#include "tables.h"
+#include "LinearArray.cpp"
 #include "TableList.cpp"
-#include "TableHash.cpp"
+#include "HashTable1.cpp"
+#include "polynomials.h"
 
 //линейная таблица на массиве
 
-TEST(TableLinear, search_is_true )
+TEST(LinearArray, can_create)
 {
-	TableLinear t;
-	t.Add("123", 123);
-	EXPECT_EQ(t.Find(123).key, 123);
+	ASSERT_NO_THROW(LinearArray t);
 }
-TEST(TableLinear, insert_is_true)
+TEST(LinearArray, search_is_true )
 {
-	TableLinear t;
-	t.Add("123", 123);
+	LinearArray t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_EQ(t.Find("123")->key, "123");
+}
+
+TEST(LinearArray, insert_is_true)
+{
+	LinearArray t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
 	EXPECT_FALSE(t.IsEmpty());
 }
-TEST(TLinearArray, delete_is_true)
+TEST(LinearArray, delete_is_true)
 {
-	TableLinear t;
-	t.Add("123", 123);
-	t.Remove(123);
+	LinearArray t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	t.Remove("123");
 	EXPECT_TRUE(t.IsEmpty());
 }
-/*
+
 //упорядоченная таблица на массиве
-
-TEST(TOrderedArray, search_is_true)
+TEST(OrderedArray, can_create)
 {
-
+	ASSERT_NO_THROW(OrderedArray t);
 }
-TEST(TOrderedArray, insert_is_true)
+TEST(OrderedArray, search_is_true )
 {
-
+	OrderedArray t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_EQ(t.Find("123")->key, "123");
 }
-TEST(TOrderedArray, delete_is_true)
+
+TEST(OrderedArray, insert_is_true)
 {
-
+	OrderedArray t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_FALSE(t.IsEmpty());
 }
-*/
+TEST(OrderedArray, delete_is_true)
+{
+	OrderedArray t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	t.Remove("123");
+	EXPECT_TRUE(t.IsEmpty());
+}
+
 //линейная таблица на списке
+TEST(ListTable, can_create)
+{
+	ASSERT_NO_THROW(ListTable t);
+}
 TEST(ListTable, search_is_true)
 {
 	ListTable t;
-	t.Add(123, "123");
-	EXPECT_EQ(t.Find(123)->key, 123);
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_EQ(t.Find("123")->key, "123");
 }
 TEST(ListTable, insert_is_true)
 {
 	ListTable t;
-	t.Add(123, "123");
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
 	EXPECT_FALSE(t.IsEmpty());
 }
 TEST(ListTable, delete_is_true)
 {
 	ListTable t;
-	t.Add(123, "123");
-	t.Delete(123);
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	t.Remove("123");
 	EXPECT_TRUE(t.IsEmpty());
 }
-/*
+
 //дерево поиска
-
-TEST(TSearchTree, search_is_true)
+TEST(SearchTree, can_create)
 {
-
+	ASSERT_NO_THROW(SearchTree t);
 }
-TEST(TSearchTree, insert_is_true)
+TEST(SearchTree, search_is_true)
 {
-
-}
-TEST(TSearchTree, delete_is_true)
-{
-
-}
-*/
-//хэш-таблица
-TEST(HashTable, create_is_true)
-{
-	ASSERT_NO_THROW(HashTable t);
-}
-TEST(HashTable, search_is_true)
-{
-	HashTable t;
-	t.Add("123", "123");
-	EXPECT_EQ(t.Find("123")->key, "123");
-}
-TEST(HashTable, insert_is_true)
-{
-	HashTable t;
-	t.Add("123", "123");
+	SearchTree t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
 	EXPECT_FALSE(t.IsEmpty());
 }
-TEST(HashTable, delete_is_true)
+TEST(SearchTree, insert_is_true)
 {
-	HashTable t;
-	t.Add("123", "123");
+	SearchTree t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_EQ(t.Find("123")->key, "123");
+}
+/*
+TEST(SearchTree, delete_is_true)
+{
+	SearchTree t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	t.Remove("123");
+	EXPECT_TRUE(t.IsEmpty());
+}
+*/
+//хэш-таблица "Цепочки"
+TEST(HashTable1, can_create)
+{
+	ASSERT_NO_THROW(HashTable1 t);
+}
+TEST(HashTable1, insert_is_true)
+{
+	HashTable1 t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_FALSE(t.IsEmpty());
+}
+TEST(HashTable1, search_is_true)
+{
+	HashTable1 t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_EQ(t.Find("123")->key, "123");
+}
+
+TEST(HashTable1, delete_is_true)
+{
+	HashTable1 t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	t.Remove("123");
+	EXPECT_TRUE(t.IsEmpty());
+}
+//хэш-таблица "Открытая адресация"
+TEST(HashTable2, can_create)
+{
+	ASSERT_NO_THROW(HashTable2 t);
+}
+TEST(HashTable2, insert_is_true)
+{
+	HashTable2 t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_FALSE(t.IsEmpty());
+}
+TEST(HashTable2, search_is_true)
+{
+	HashTable2 t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
+	EXPECT_EQ(t.Find("123")->key, "123");
+}
+
+TEST(HashTable2, delete_is_true)
+{
+	HashTable2 t;
+	Polynom t1("1x1y1z1");
+	t.Add(t1, "123");
 	t.Remove("123");
 	EXPECT_TRUE(t.IsEmpty());
 }

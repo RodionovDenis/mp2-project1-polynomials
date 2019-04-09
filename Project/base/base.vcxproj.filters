@@ -1,49 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="sample_polynomials.cpp" />
+    <ClCompile Include="TableList.cpp" />
+    <ClCompile Include="HashTable1.cpp" />
+    <ClCompile Include="HashTable2.cpp" />
+    <ClCompile Include="LinearArray.cpp" />
+    <ClCompile Include="SearchTree.cpp" />
+    <ClCompile Include="OrderedArray.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="polynomials.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="postfix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-<<<<<<< HEAD
-    <ClCompile Include="sample_polynomials.cpp">
-=======
-    <ClCompile Include="TableHash.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TableLinear.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TableList.cpp">
->>>>>>> 73a4ba924101c27c2804aff4f7b00f81ee993631
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="list.h" />
+    <ClInclude Include="polynomials.h" />
+    <ClInclude Include="postfix.h" />
+    <ClInclude Include="stack.h" />
+    <ClInclude Include="tables.h" />
   </ItemGroup>
 </Project>
