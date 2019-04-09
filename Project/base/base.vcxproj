@@ -87,13 +87,10 @@
     <ClInclude Include="tables.h" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="sample_polynomials.cpp" />
-=======
     <ClCompile Include="TableHash.cpp" />
     <ClCompile Include="TableLinear.cpp" />
     <ClCompile Include="TableList.cpp" />
->>>>>>> 73a4ba924101c27c2804aff4f7b00f81ee993631
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#ifndef __LIST_H__
+﻿#ifndef __LIST_H__
 #define __LIST_H__ 
 
 #include <iostream>
@@ -17,8 +17,9 @@ template <class T>
 class List
 {
 	Node<T> * pFirst;
+	int size;
 public:
-	List() : pFirst(nullptr) {} //конструктор
+	List() : pFirst(nullptr), size(0) {} //конструктор
 	~List() //деструктор
 	{
 		Node<T> * p = pFirst;
@@ -31,82 +32,94 @@ public:
 	} //деструктор
 	List(const List<T> & list) //конструктор копирования
 	{
-		if (list.pFirst != nullptr)
+		if (list.pFirst == nullptr)
+		{
 			pFirst = nullptr;
+			size = 0;
+		}
 		else
 		{
 			pFirst = new Node<T>;
-			Node<T> p1 = pFirst, p2 = list.pFirst;
-			while (p2->pNext != nullptr)
+			pFirst->data = list.pFirst->data;
+			size = list.size;
+			Node<T> * ptr = list.pFirst->pNext, *p = pFirst, *tmp;
+			while (ptr != nullptr)
 			{
-				p1->data = p2->data;
-				p1 = p1->pNext;
-				p1 = new Node<T>;
-				p2 = p2->pNext;
+				tmp = new Node<T>;
+				tmp->data = ptr->data;
+				p->pNext = tmp;
+				p = tmp;
+				ptr = ptr->pNext;
 			}
-			p1->data = p2->data;
-			p1->pNext = nullptr;
 		}
 	}
-	List<T> & operator=(const List<T> & list) //оператор присваивания
+	List<T>  operator=(const List<T> & list) //оператор присваивания
 	{
-		if (list.pFirst != nullptr)
+		if (list.pFirst == nullptr)
 		{
 			pFirst = nullptr;
-			return this;
+			size = 0;
+			return *this;
 		}
-		if (pFirst != nullptr)
+		if (size == list.size)
 		{
-			Link<T> * p = pFirst;
-			while (p != nullptr)
+			Node<T> *ptr = list.pFirst, *p = pFirst;
+			while (ptr != nullptr)
 			{
-				pFirst = p->pNext;
-				delete p;
-				p = pFirst;
+				p->data = ptr->data;
+				p = p->pNext;
+				ptr = ptr->pNext;
 			}
+			return *this;
 		}
-		pFirst = new Node<T>;
-		Node<T> p1 = pFirst, p2 = list.pFirst;
-		while (p2->pNext != nullptr)
+		Node<T> * p1 = pFirst;
+		while (p1 != nullptr)
 		{
-			p1->data = p2->data;
-			p1 = p1->pNext;
-			p1 = new Node<T>;
-			p2 = p2->pNext;
+			pFirst = p1->pNext;
+			delete p1;
+			p1 = pFirst;
 		}
-		p1->data = p2->data;
-		return this;
+		size = list.size;
+		pFirst = new Node<T>;
+		pFirst->data = list.pFirst->data;
+		Node<T> * ptr = list.pFirst->pNext, *p = pFirst, *tmp;
+		while (ptr != nullptr)
+		{
+			tmp = new Node<T>;
+			tmp->data = ptr->data;
+			p->pNext = tmp;
+			p = tmp;
+			ptr = ptr->pNext;
+		}
+		return *this;
 	}
 	int Size() //получить размер
 	{
-		int size = 0;
-		Node<T> * ptr = pFirst;
-		while (ptr != nullptr)
-		{
-			size++;
-			ptr = ptr->pNext;
-		}
 		return size;
 	}
-	T operator[](int i) //перегрузка скобок
+	T & operator[](int i) //перегрузка скобок
 	{
 		if (i >= size)
 			throw "data is not correct";
 		int j = 0;
 		Node<T> * ptr = pFirst;
 		while (i != j)
+		{
 			ptr = ptr->pNext;
+			j++;
+		}
 		return ptr->data;
 	}
 	void Insert(T _data) //вставить
 	{
+		size++;
 		if (pFirst == nullptr)
 		{
 			pFirst = new Node<T>;
 			pFirst->data = _data;
 			return;
 		}
-		Node<T> * ptr = pFirst, * p = pFirst;
+		Node<T> * ptr = pFirst, *p = pFirst;
 		Node<T> * tmp = new Node<T>;
 		tmp->data = _data;
 		if (_data >= pFirst->data)
@@ -128,6 +141,49 @@ public:
 		}
 		p->pNext = tmp;
 	}
+	void Delete(int m) 	
+	{
+		if (m >= size)
+			throw "data is not correct";
+		int i = 0;
+		Node<T> *ptr = pFirst, *p = pFirst;
+		if (m == 0)
+		{
+			pFirst = pFirst->pNext;
+			delete ptr;
+			size--;
+			return;
+		}
+		while (i < m)
+		{
+			p = ptr;
+			ptr = ptr->pNext;
+			i++;
+		}
+		p->pNext = ptr->pNext;
+		delete ptr;
+		size--;
+	}
+	void Merge(int m1, int m2)
+	{
+		if (m1 >= size || m2 >= size)
+			throw "data is not correct";
+		if (m1 == m2)
+			return;
+		Node<T> nd;
+		nd.data = (*this)[m1] + (*this)[m2];
+		if (m1 > m2)
+		{
+			Delete(m1);
+			Delete(m2);
+		}
+		else
+		{
+			Delete(m2);
+			Delete(m1);
+		}
+		Insert(nd.data);
+	}
 	void Print()
 	{
 		Node<T> *ptr = pFirst;
@@ -137,7 +193,6 @@ public:
 			ptr = ptr->pNext;
 		}
 	}
-
 };
 
 #endif

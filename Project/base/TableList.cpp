@@ -1,7 +1,5 @@
 #include "tables.h"
 
-
-
 int ListTable::Count()
 {
 	return size;
@@ -9,57 +7,70 @@ int ListTable::Count()
 bool ListTable::IsEmpty()
 {
 	if (size == 0)
-		return 1;
-	return 0;
+		return true;
+	return false;
 }
-void ListTable::Add(int _key, string _data)
-{                                 
-	Node  *temp = new Node;                                       
-	temp->key = _key;                               
-	temp->data = _data;
-	if (!IsEmpty())                       
+void ListTable::Add(Polynom _data, string _key)
+{
+	Node1  *temp = new Node1;
+	temp->rec.key = _key;
+	temp->rec.data = _data;
+	if (size == 0)
+		pFirst = temp;
+	else
 	{
-		end->Next = temp;                    
-		end = temp; 
-		size++;
-		return;
+		temp->pNext = pFirst;
+		pFirst = temp;
 	}
-	else 
-		head = end = temp;  
 	size++;
-	return;
 }
-void ListTable::Delete(int _key)
+bool ListTable::Remove(string _key)
 {
-	Node* tmp1;
 	if (IsEmpty())
+		return false;
+	Node1 * tmp = pFirst;
+	Node1 * ptmp = pFirst;
+	if (tmp->rec.key == _key)
 	{
-		return;
-	}
-	if (head == end)
-	{
-		delete head;
+		pFirst = tmp->pNext;
+		delete tmp;
 		size--;
-		return;
+		return true;
 	}
-	for (Node *tmp = head; tmp = end; tmp = tmp->Next)
-		if (tmp->Next->key == _key)
+	while (tmp != nullptr)
+	{
+		if (tmp->rec.key == _key)
 		{
-			tmp1 = tmp->Next->Next;
-			delete tmp->Next;
-			tmp->Next = tmp1;
+			ptmp->pNext = tmp->pNext;
+			delete tmp;
+			size--;
+			return true;
 		}
-	size--;
-	return;
+		ptmp = tmp;
+		tmp = tmp->pNext;
+	}
+	return false;
 }
-Node* ListTable::Find(int _key)
+TRecord * ListTable::Find(string _key)
 {
 	if (IsEmpty())
+		return nullptr;
+	Node1 * tmp = pFirst;
+	while (tmp != nullptr)
 	{
-		return NULL;
+		if (tmp->rec.key == _key)
+			return &(tmp->rec);
+		tmp = tmp->pNext;
 	}
-	for (Node *tmp = head; tmp = end; tmp = tmp->Next)
-		if (tmp->key == _key)
-			return tmp;
-	return NULL;
+	return nullptr;
+
+}
+void ListTable::Print()
+{
+	Node1*tmp = pFirst;
+	while (tmp != nullptr)
+	{
+		cout << tmp->rec.key << " : " << tmp->rec.data.ReturnForm() << endl;
+		tmp = tmp->pNext;
+	}
 }

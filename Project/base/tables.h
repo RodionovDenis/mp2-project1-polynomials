@@ -1,30 +1,37 @@
 #ifndef __TABLES_H__
 #define __TABLES_H__
-#include <iostream>
-#include <string>
-using namespace std;
+
+#define NMAX 100
+
+#include "polynomials.h"
+
+struct TRecord
+{
+	Polynom data;
+	string key;
+	TRecord() : data(), key() {}
+	TRecord(Polynom _data, string _key) : data(_data), key(_key) {}
+};
+
 struct Node1
 {
-	string key;
-	string data;
-	Node1* Next = NULL;
+	TRecord rec;
+	Node1* pNext;
+	Node1():rec(), pNext(nullptr) {}
 };
-struct Element
-{
-	string data;
-	int key;
-};
-struct  Node
-{
-	string data;
-	int key;
-	Node *Next;
-};
-class HashTable
-{
-	Node1 *table[100];
-	int size = 0;
 
+struct Node2
+{
+	TRecord rec;
+	Node2 * pRight;
+	Node2 * pLeft;
+	Node2(): rec(), pRight(nullptr), pLeft(nullptr) {}
+};
+
+class HashTable1
+{
+	Node1 ** table;
+	int size;
 	int hash(string _key)
 	{
 		int sum = 0;
@@ -37,65 +44,170 @@ class HashTable
 	}
 
 public:
-	HashTable()
+	HashTable1()
 	{
-		for (int i = 99; i >= 0; i--)
-		{ 
-			table[i] = NULL;
-		}
+		table = new Node1 *[NMAX];
+		for (int i = 0; i < NMAX; i++)
+			table[i] = nullptr;
+		size = 0;
 	}
 
-	~HashTable()
+	~HashTable1()
 	{
 		for (int i = 0; i < 100; i++)
 			delete table[i];
 	}
+
 	int Count();
 	bool IsEmpty();
 	bool IsFull();
-	void Add(string _data, string _key);
-	void Remove(string _key);
-	Node1* Find(string _key);
+	bool Add(Polynom _data, string _key);
+	bool Remove(string _key);
+	TRecord* Find(string _key);
+	void Print();
 };
-class TableLinear
+class HashTable2
 {
-	Element table[1000];
-	int last = 0;
-public:
-	TableLinear()
+	TRecord * table;
+	int size;
+	char * flags;
+	int hash(string _key)
 	{
-		for (int i = 0; i < 1000; i++)
-		{
-			table[i].data = "empty";
-			table[i].key = -1;
-		}
+		int sum = 0;
+		for (int i = 0; i < _key.length(); i++)
+			sum += _key[i];
+		if (sum >= 0)
+			return sum % 100;
+		if (sum < 0)
+			return -1 * sum % 100;
+	}
+public:
+	HashTable2()
+	{
+		table = new TRecord[NMAX];
+		flags = new char[NMAX];
+		for (int i = 0; i < NMAX; i++)
+			flags[i] = '-';
+		size = 0;
+	}
+
+	~HashTable2()
+	{
+		delete[] table;
+		delete[] flags;
+	}
+
+	int Count();
+	bool IsEmpty();
+	bool IsFull();
+	bool Add(Polynom _data, string _key);
+	bool Remove(string _key);
+	TRecord * Find(string _key);
+	void Print();
+};
+class LinearArray
+{
+	TRecord * table;
+	int last;
+public:
+	LinearArray()
+	{
+		table = new TRecord[NMAX];
+		last = -1;
+	}
+	~LinearArray()
+	{
+		delete[] table;
 	}
 	bool IsFull();
 	bool IsEmpty();
-	void Add(string _data, int _key);
-	void Remove(int _key);
-	Element Find(int _key);
+	bool Add(Polynom _data, string _key);
+	bool Remove(string _key);
+	TRecord * Find(string _key);
+	void Print();
 };
 class ListTable
 {
-	Node *head, *end;
+	Node1 *pFirst;
 	int size;
 public:
-	ListTable() :head(NULL), end(NULL), size(0) {};
+	ListTable() : pFirst(nullptr), size(0) {};
 	~ListTable()
 	{
-		while (size != 0)
+		Node1 * p = pFirst;
+		while (p != nullptr)
 		{
-			Node *temp = head->Next;
-			delete head;
-			head = temp;
-			size--;
+			pFirst = p->pNext;
+			delete p;
+			p = pFirst;
 		}
 	}
 	int Count();
 	bool IsEmpty();
-	void Add(int _key, string _data);
-	void Delete(int _key);
-	Node* Find(int _key);
+	void Add(Polynom _data, string _key);
+	bool Remove(string _key);
+	TRecord * Find(string _key);
+	void Print();
 };
+class OrderedArray
+{
+	TRecord * table;
+	int last;
+	int BinarySearch(string _key);
+public:
+	OrderedArray()
+	{
+		table = new TRecord[NMAX];
+		last = -1;
+	}
+	~OrderedArray()
+	{
+		delete[] table;
+	}
+	OrderedArray(const OrderedArray & t);
+	OrderedArray & operator=(const OrderedArray & t);
+	bool IsFull();
+	bool IsEmpty();
+	bool Add(Polynom _data, string _key);
+	bool Remove(string _key);
+	TRecord * Find(string _key);
+	void Print();
+
+};
+class SearchTree
+{
+	Node2 * pFirst;
+	void DeleteTree(Node2 * tmp)
+	{
+		if (tmp != nullptr)
+		{
+			DeleteTree(tmp->pRight);
+			DeleteTree(tmp->pLeft);
+			delete tmp;
+		}
+	}
+	void PrintTree(Node2 * tmp)
+	{
+		if (tmp != nullptr)
+		{
+			PrintTree(tmp->pRight);
+			cout << tmp->rec.key << " : " << tmp->rec.data.ReturnForm() << endl;
+			PrintTree(tmp->pLeft);
+		}
+	}
+public:
+	SearchTree() : pFirst(nullptr) {}
+
+	~SearchTree()
+	{
+		DeleteTree(pFirst);
+	}
+
+	bool IsEmpty();
+	void Add(Polynom _data, string _key);
+	bool Remove(string _key);
+	TRecord * Find(string _key);
+	void Print();
+};
+
 #endif
