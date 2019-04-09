@@ -8,6 +8,7 @@
     <ClCompile Include="LinearArray.cpp" />
     <ClCompile Include="SearchTree.cpp" />
     <ClCompile Include="OrderedArray.cpp" />
+    <ClCompile Include="postfix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h" />

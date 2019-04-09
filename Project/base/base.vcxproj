@@ -14,6 +14,7 @@
     <ProjectGuid>{4854D7B0-72B7-4276-BE33-BFADBC979165}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>base</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -91,6 +92,7 @@
     <ClCompile Include="HashTable2.cpp" />
     <ClCompile Include="LinearArray.cpp" />
     <ClCompile Include="OrderedArray.cpp" />
+    <ClCompile Include="postfix.cpp" />
     <ClCompile Include="sample_polynomials.cpp" />
     <ClCompile Include="SearchTree.cpp" />
     <ClCompile Include="TableList.cpp" />
