@@ -36,7 +36,8 @@ bool SearchTree::Remove(string _key)
 		return false;
 	Node2 * tmp = pFirst;
 	Node2 * ptmp = pFirst;
-	Node2 * ptmp2;
+	Node2 * ptmp2 = nullptr;
+	Node2 * ptmp3;
 	while (tmp->rec.key != _key && tmp != nullptr)
 	{
 		ptmp = tmp;
@@ -49,17 +50,32 @@ bool SearchTree::Remove(string _key)
 	if (tmp->pLeft == nullptr && tmp->pRight == nullptr)
 	{
 		if (ptmp->pRight == tmp)
-			ptmp->pRight = nullptr; 
+			ptmp->pRight = nullptr;
 		else
 			ptmp->pLeft = nullptr;
+		if (ptmp == pFirst)
+			pFirst = nullptr;
 		delete tmp;
 		return true;
 	}
+	ptmp3 = ptmp;
 	ptmp = tmp->pLeft;
+	if (ptmp == nullptr)
+	{
+		ptmp3->pRight = tmp->pRight;
+		delete tmp;
+		return true;
+	}
 	while (ptmp->pRight != nullptr)
 	{
 		ptmp2 = ptmp;
 		ptmp = ptmp->pRight;
+	}
+	if (ptmp2 == nullptr)
+	{
+		ptmp->pLeft = tmp->pLeft;
+		delete tmp;
+		return true;
 	}
 	ptmp2->pRight = ptmp->pLeft;
 	tmp->rec = ptmp->rec;
@@ -76,7 +92,7 @@ TRecord * SearchTree::Find(string _key)
 		if (tmp->rec.key > _key)
 			tmp = tmp->pRight;
 		else tmp = tmp->pLeft;
-	} 
+	}
 	if (tmp == nullptr)
 		return nullptr;
 	return &(tmp->rec);

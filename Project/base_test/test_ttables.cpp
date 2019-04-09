@@ -3,6 +3,9 @@
 #include "LinearArray.cpp"
 #include "TableList.cpp"
 #include "HashTable1.cpp"
+#include "HashTable2.cpp"
+#include "OrderedArray.cpp"
+#include "SearchTree.cpp"
 #include "polynomials.h"
 
 //линейная таблица на массиве
@@ -111,7 +114,7 @@ TEST(SearchTree, insert_is_true)
 	t.Add(t1, "123");
 	EXPECT_EQ(t.Find("123")->key, "123");
 }
-/*
+
 TEST(SearchTree, delete_is_true)
 {
 	SearchTree t;
@@ -120,7 +123,7 @@ TEST(SearchTree, delete_is_true)
 	t.Remove("123");
 	EXPECT_TRUE(t.IsEmpty());
 }
-*/
+
 //хэш-таблица "Цепочки"
 TEST(HashTable1, can_create)
 {

@@ -48,6 +48,7 @@ bool HashTable2::Remove(string _key)
 		if (table[(i - 1) % NMAX].key == _key)
 		{
 			flags[(i - 1) % NMAX] = '-';
+			size--;
 			return true;
 		}
 	return false;
